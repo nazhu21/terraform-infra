@@ -1,2 +1,2 @@
 # terraform-infra
-Terraform code used to build company's infrastructure
+Terraform code used to build infrastructure
