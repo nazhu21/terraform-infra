@@ -1,0 +1,60 @@
+name: 'Workflow - Deploy on multi-account AWS with Terraform'
+on:
+  # trigger/start job when push happens to any of specified branches
+  push:
+    branches:
+    - feature/**
+    - staging
+    - main
+# required permissions by GitHub Actions for assuming AWS IAM role
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
+env:
+  AWS_REGION: "us-east-1"
+  ENVIRONMENT_STAGE: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
+jobs:
+  deploy-terraform:
+    runs-on: ubuntu-latest
+    # default settings to apply for all the steps
+    defaults:
+      run:
+        working-directory: ./roots/project-x-main-root/
+        shell: bash
+    environment: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # equivalent of "git clone repo"
+      - uses: actions/checkout@v3
+
+      # login to AWS
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.IAM_ROLE }}
+          role-session-name: GitHubActionsRoleSession
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        run: terraform init -backend-config="bucket=project-x-state-bucket-${ENVIRONMENT_STAGE}"
+
+      # Checks that all Terraform configuration files adhere to a canonical format
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      # # Run automated terraform tests - we don't have it
+      # - name: Terratest
+      #   run: |
+      #     go mod init
+      #     go get github.com/gruntwork-io/terratest
+      #     go get github.com/stretchr/testify
+      #     go test -v -tags=unit
+
+      # Generates an execution plan for Terraform
+      - name: Terraform Plan
+        run: terraform plan -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
+
+      # Build infrastructure according to Terraform configuration files
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
