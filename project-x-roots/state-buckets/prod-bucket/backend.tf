@@ -2,15 +2,16 @@
 # TREAT THESE RESOURCES AS BEING CREATED MANUALLY AND STATE NOT BEING MANAGED IN TERRAFORM
 # ALTERNATIVELY, YOU CAN JUST CREATE BUCKET MANUALLY IN AWS CONSOLE WITH DESIRED SETTINGS
 resource "aws_s3_bucket" "statebucket" {
-  bucket = "nazhu21-project-x-state-bucket-dev"
+  bucket = "nazhu21-project-x-state-bucket-production"
 
   tags = {
     Name        = "Terraform State bucket for Project X"
-    Environment = "Dev"
+    Environment = "Prod"
   }
-  versioning {
-    enabled = false
-  }
+}
+
+provider "aws" {
+  region = "us-east-1"
 }
 
 
