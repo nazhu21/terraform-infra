@@ -14,7 +14,7 @@ permissions:
   contents: read  # This is required for actions/checkout
 env:
   AWS_REGION: "us-east-1"
-  ENVIRONMENT_STAGE: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
+  ENVIRONMENT_STAGE: ${{ (github.ref == 'refs/heads/main' && 'dev') || (github.ref == 'refs/heads/prod' && 'production') || 'dev' }}
 jobs:
   deploy-eks:
     runs-on: ubuntu-latest
@@ -59,6 +59,7 @@ jobs:
 
       # Build infrastructure according to Terraform configuration files
       - name: Terraform Apply
-        if: env.ENVIRONMENT_STAGE != 'dev'
+        #if: env.ENVIRONMENT_STAGE != 'dev'
+        if: env.ENVIRONMENT_STAGE == 'dev' && github.ref == 'refs/heads/main'
         #run: terraform apply -auto-approve -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
         run: echo Hello World!
