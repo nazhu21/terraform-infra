@@ -6,8 +6,8 @@ on:
     - feature/**
     - staging
     - main
-    paths:
-    - terraform-infra/project-x-roots/EKS
+    # paths:
+    # - terraform-infra/project-x-roots/EKS
 # required permissions by GitHub Actions for assuming AWS IAM role
 permissions:
   id-token: write # This is required for requesting the JWT
