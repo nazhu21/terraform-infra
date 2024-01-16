@@ -59,6 +59,6 @@ jobs:
 
       # Build infrastructure according to Terraform configuration files
       - name: Terraform Apply
-        if: github.ref != 'refs/heads/main'
+        if: env.ENVIRONMENT_STAGE != 'dev'
         #run: terraform apply -auto-approve -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
         run: echo Hello World!
