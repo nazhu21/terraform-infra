@@ -7,7 +7,7 @@ on:
     - staging
     - main
     paths:
-    - ./project-x-roots/EKS
+    - 'project-x-roots/EKS/**'
 # required permissions by GitHub Actions for assuming AWS IAM role
 permissions:
   id-token: write # This is required for requesting the JWT
