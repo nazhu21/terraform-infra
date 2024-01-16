@@ -1,4 +1,5 @@
 
+# Creating VPC for EKS
 module "vpc" {
   source = "github.com/nazhu21/terraform-infra/vpc-module"
   #source = "../../vpc-module"
