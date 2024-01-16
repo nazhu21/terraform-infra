@@ -1,6 +1,7 @@
 
 module "vpc" {
-  source = "../../vpc-module"
+  source = "github.com/nazhu21/terraform-infra/vpc-module"
+  #source = "../../vpc-module"
 
   cidr_block  = var.cidr_block
   vpc_name    = "${var.cluster_name}-vpc"
