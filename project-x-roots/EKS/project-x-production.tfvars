@@ -33,7 +33,7 @@ ebs_volume_size = 8
 volume_type     = "gp2"
 #aws ssm get-parameter --name /aws/service/eks/optimized-ami/1.27/amazon-linux-2/recommended/image_id --region us-east-1 --query "Parameter.Value" --output text
 image_id                                 = "ami-05442bc7f19efb62e"
-instance_type                            = "t3.medium"
+instance_type                            = "t2.micro"
 node_asg_min_size                        = 1
 node_asg_max_size                        = 4
 node_asg_desired_size                    = 2
