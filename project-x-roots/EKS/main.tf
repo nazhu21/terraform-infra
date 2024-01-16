@@ -24,6 +24,7 @@ module "vpc" {
 
 }
 
+# Creating EKS with self-managed nodes
 module "eks" {
   source = "github.com/nazhu21/terraform-infra/eks-module"
   #source = "../../eks-module"
