@@ -23,7 +23,7 @@ module "vpc" {
 }
 
 module "eks" {
-  source = "https://github.com/nazhu21/terraform-infra/tree/main/eks-module"
+  source = "github.com/nazhu21/terraform-infra/eks-module"
   #source = "../../eks-module"
 
   cluster_name                   = var.cluster_name
