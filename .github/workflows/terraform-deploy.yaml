@@ -4,7 +4,7 @@ on:
   push:
     branches:
     - feature/**
-    - staging
+    - prod
     - main
     paths:
     - 'project-x-roots/EKS/**'
