@@ -1,4 +1,4 @@
-name: 'Workflow - Deploy on multi-account AWS with Terraform'
+name: 'EKS-workflow - Deploy on multi-account AWS with Terraform'
 on:
   # trigger/start job when push happens to any of specified branches
   push:
@@ -6,6 +6,8 @@ on:
     - feature/**
     - staging
     - main
+    paths:
+    - ./project-x-roots/EKS
 # required permissions by GitHub Actions for assuming AWS IAM role
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -19,7 +21,7 @@ jobs:
     # default settings to apply for all the steps
     defaults:
       run:
-        working-directory: ./roots/project-x-main-root/
+        working-directory: ./project-x-roots/EKS
         shell: bash
     environment: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -37,7 +39,7 @@ jobs:
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        run: terraform init -backend-config="bucket=project-x-state-bucket-${ENVIRONMENT_STAGE}"
+        run: terraform init -backend-config="bucket=nazhu21-project-x-state-bucket-${ENVIRONMENT_STAGE}"
 
       # Checks that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
@@ -55,6 +57,6 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
 
-      # Build infrastructure according to Terraform configuration files
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
+      # # Build infrastructure according to Terraform configuration files
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
