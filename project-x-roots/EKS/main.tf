@@ -28,24 +28,24 @@ module "vpc" {
 module "eks" {
   source = "github.com/nazhu21/terraform-infra/eks-module"
 
-    cluster_name                   = var.cluster_name
-    eks_version                    = var.eks_version
-    vpc_id                         = module.vpc.vpc_id
-    control_plane_subnet_ids       = [module.vpc.public_subnet_ids[0], module.vpc.public_subnet_ids[1], module.vpc.public_subnet_ids[2]]
-    control_plane_role_policy_arns = var.control_plane_role_policy_arns
-    #ebs_csi_role_policy_arns       = var.ebs_csi_role_policy_arns
+  cluster_name                   = var.cluster_name
+  eks_version                    = var.eks_version
+  vpc_id                         = module.vpc.vpc_id
+  control_plane_subnet_ids       = [module.vpc.public_subnet_ids[0], module.vpc.public_subnet_ids[1], module.vpc.public_subnet_ids[2]]
+  control_plane_role_policy_arns = var.control_plane_role_policy_arns
+  #ebs_csi_role_policy_arns       = var.ebs_csi_role_policy_arns
 
-    ebs_volume_size                          = var.ebs_volume_size
-    volume_type                              = var.volume_type
-    instance_type                            = var.instance_type
-    other_instance_types                     = var.other_instance_types
-    worker_subnet_ids                        = [module.vpc.public_subnet_ids[0], module.vpc.public_subnet_ids[1], module.vpc.public_subnet_ids[2]]
-    node_asg_min_size                        = var.node_asg_min_size
-    node_asg_max_size                        = var.node_asg_max_size
-    node_asg_desired_size                    = var.node_asg_desired_size
-    spot_max_price                           = var.spot_max_price
-    on_demand_base_capacity                  = var.on_demand_base_capacity
-    on_demand_percentage_above_base_capacity = var.on_demand_percentage_above_base_capacity
-    workers_policy_arns                      = var.workers_policy_arns
-    devops_access_role_arn                   = var.devops_access_role_arn
+  ebs_volume_size                          = var.ebs_volume_size
+  volume_type                              = var.volume_type
+  instance_type                            = var.instance_type
+  other_instance_types                     = var.other_instance_types
+  worker_subnet_ids                        = [module.vpc.public_subnet_ids[0], module.vpc.public_subnet_ids[1], module.vpc.public_subnet_ids[2]]
+  node_asg_min_size                        = var.node_asg_min_size
+  node_asg_max_size                        = var.node_asg_max_size
+  node_asg_desired_size                    = var.node_asg_desired_size
+  spot_max_price                           = var.spot_max_price
+  on_demand_base_capacity                  = var.on_demand_base_capacity
+  on_demand_percentage_above_base_capacity = var.on_demand_percentage_above_base_capacity
+  workers_policy_arns                      = var.workers_policy_arns
+  devops_access_role_arn                   = var.devops_access_role_arn
 }
