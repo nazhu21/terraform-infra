@@ -45,4 +45,4 @@ workers_policy_arns = [
   "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
   "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 ]
-devops_access_role_arn = "arn:aws:iam::996819055493:role/AdminAccessRoleProd"
+devops_access_role_arn = "arn:aws:iam::996819055493:user/Nazarbek"
