@@ -154,19 +154,19 @@ resource "aws_iam_role" "ebs_csi_iam_role" {
   name               = "${var.cluster_name}-EbsCsiDriverRole"
 }
 
-resource "aws_iam_role_policy_attachment" "ebs_csi_role_attached_policies" {
-  for_each   = toset(var.ebs_csi_role_policy_arns)
-  role       = aws_iam_role.ebs_csi_iam_role.name
-  policy_arn = each.value
-}
+# resource "aws_iam_role_policy_attachment" "ebs_csi_role_attached_policies" {
+#   for_each   = toset(var.ebs_csi_role_policy_arns)
+#   role       = aws_iam_role.ebs_csi_iam_role.name
+#   policy_arn = each.value
+# }
 #######################
 # Adding EBS CSI Driver
-resource "aws_eks_addon" "ebs_csi_driver" {
-  depends_on               = [aws_iam_role.ebs_csi_iam_role]
-  cluster_name             = aws_eks_cluster.control_plane.name
-  addon_name               = "aws-ebs-csi-driver"
-  service_account_role_arn = aws_iam_role.ebs_csi_iam_role.arn
-}
+# resource "aws_eks_addon" "ebs_csi_driver" {
+#   depends_on               = [aws_iam_role.ebs_csi_iam_role]
+#   cluster_name             = aws_eks_cluster.control_plane.name
+#   addon_name               = "aws-ebs-csi-driver"
+#   service_account_role_arn = aws_iam_role.ebs_csi_iam_role.arn
+# }
 
 
 #############################################

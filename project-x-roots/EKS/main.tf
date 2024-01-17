@@ -33,7 +33,7 @@ module "eks" {
   vpc_id                         = module.vpc.vpc_id
   control_plane_subnet_ids       = [module.vpc.public_subnet_ids[0], module.vpc.public_subnet_ids[1], module.vpc.public_subnet_ids[2]]
   control_plane_role_policy_arns = var.control_plane_role_policy_arns
-  ebs_csi_role_policy_arns       = var.ebs_csi_role_policy_arns
+  #ebs_csi_role_policy_arns       = var.ebs_csi_role_policy_arns
 
   ebs_volume_size                          = var.ebs_volume_size
   volume_type                              = var.volume_type
