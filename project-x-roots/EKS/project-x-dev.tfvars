@@ -31,7 +31,7 @@ ebs_csi_role_policy_arns = [
 
 ebs_volume_size = 8
 volume_type     = "gp2"
-#image_id                                 = "ami-05442bc7f19efb62e"
+image_id                                 = "ami-05442bc7f19efb62e"
 instance_type                            = "t3.medium"
 other_instance_types                     = ["t2.medium", "t3a.medium", "t2.micro"]
 node_asg_min_size                        = 1
