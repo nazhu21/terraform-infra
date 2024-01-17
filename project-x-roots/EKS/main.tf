@@ -24,9 +24,9 @@ module "vpc" {
 
 }
 
-# # Creating EKS with self-managed nodes
-# module "eks" {
-#   source = "github.com/nazhu21/terraform-infra/eks-module"
+# Creating EKS with self-managed nodes
+module "eks" {
+  source = "github.com/nazhu21/terraform-infra/eks-module"
 
 #   cluster_name                   = var.cluster_name
 #   eks_version                    = var.eks_version
@@ -48,4 +48,4 @@ module "vpc" {
 #   on_demand_percentage_above_base_capacity = var.on_demand_percentage_above_base_capacity
 #   workers_policy_arns                      = var.workers_policy_arns
 #   devops_access_role_arn                   = var.devops_access_role_arn
-# }
+}
