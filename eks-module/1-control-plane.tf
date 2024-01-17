@@ -95,9 +95,9 @@ resource "aws_vpc_security_group_ingress_rule" "IngressControlPlane443" {
   to_port                      = 443
   referenced_security_group_id = aws_security_group.node_security_group.id
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 

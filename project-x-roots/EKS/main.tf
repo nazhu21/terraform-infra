@@ -1,28 +1,28 @@
 
-# # Creating VPC for EKS
+# Creating VPC for EKS
 
-# module "vpc" {
-#   source = "github.com/nazhu21/terraform-infra/vpc-module"
+module "vpc" {
+  source = "github.com/nazhu21/terraform-infra/vpc-module"
 
-#   cidr_block  = var.cidr_block
-#   vpc_name    = "${var.cluster_name}-vpc"
-#   environment = var.environment
+  cidr_block  = var.cidr_block
+  vpc_name    = "${var.cluster_name}-vpc"
+  environment = var.environment
 
-#   enable_dns_support   = var.enable_dns_support
-#   enable_dns_hostnames = var.enable_dns_hostnames
-#   vpc_tenancy          = var.vpc_tenancy
+  enable_dns_support   = var.enable_dns_support
+  enable_dns_hostnames = var.enable_dns_hostnames
+  vpc_tenancy          = var.vpc_tenancy
 
-#   destination_cidr      = var.destination_cidr
-#   nat_connectivity_type = var.nat_connectivity_type
+  destination_cidr      = var.destination_cidr
+  nat_connectivity_type = var.nat_connectivity_type
 
-#   public_subnet_cidr_blocks = var.public_subnet_cidr_blocks
-#   public_subnet_azs         = var.public_subnet_azs
-#   map_public_ip_on_launch   = var.map_public_ip_on_launch
+  public_subnet_cidr_blocks = var.public_subnet_cidr_blocks
+  public_subnet_azs         = var.public_subnet_azs
+  map_public_ip_on_launch   = var.map_public_ip_on_launch
 
-#   private_subnet_cidr_blocks = var.private_subnet_cidr_blocks
-#   private_subnet_azs         = var.private_subnet_azs
+  private_subnet_cidr_blocks = var.private_subnet_cidr_blocks
+  private_subnet_azs         = var.private_subnet_azs
 
-# }
+}
 
 # # Creating EKS with self-managed nodes
 # module "eks" {
