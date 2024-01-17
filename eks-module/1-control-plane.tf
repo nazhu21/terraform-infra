@@ -177,10 +177,10 @@ resource "null_resource" "local_execs" {
 
   depends_on = [aws_eks_cluster.control_plane]
 
-  ### OIDC
-  provisioner "local-exec" {
-    command = "eksctl utils associate-iam-oidc-provider --cluster ${var.cluster_name} --approve --region ${data.aws_region.current.name}"
-  }
+  # ### OIDC
+  # provisioner "local-exec" {
+  #   command = "eksctl utils associate-iam-oidc-provider --cluster ${var.cluster_name} --approve --region ${data.aws_region.current.name}"
+  # }
 
   # update kube-config
   provisioner "local-exec" {
