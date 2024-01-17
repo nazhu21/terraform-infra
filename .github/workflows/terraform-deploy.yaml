@@ -65,4 +65,4 @@ jobs:
 
         # run Terraform Apply only if env is dev AND branch is main!
         if: env.ENVIRONMENT_STAGE == 'dev' && github.ref == 'refs/heads/main'  || (env.ENVIRONMENT_STAGE == 'production' && github.ref == 'refs/heads/prod')
-        run: terraform apply -auto-approve -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
+        run: terraform destroy -auto-approve -input=false -var-file=project-x-${ENVIRONMENT_STAGE}.tfvars
