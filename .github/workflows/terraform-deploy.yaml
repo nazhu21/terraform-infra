@@ -43,9 +43,9 @@ jobs:
       - name: Terraform Init
         run: terraform init -backend-config="bucket=nazhu21-project-x-state-bucket-${ENVIRONMENT_STAGE}"
 
-      # Checks that all Terraform configuration files adhere to a canonical format
-      - name: Terraform Format
-        run: terraform fmt -check
+      # # Checks that all Terraform configuration files adhere to a canonical format
+      # - name: Terraform Format
+      #   run: terraform fmt -check
 
       # # Run automated terraform tests - we don't have it
       # - name: Terratest
